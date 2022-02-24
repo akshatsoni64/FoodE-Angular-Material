@@ -1,0 +1,22 @@
+<div align="center" style="margin-top: 40px">
+    <mat-card style="width: 40%">
+      <h1 align="center">Login</h1>
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+        style="margin-top: 60px; margin-bottom: 20px; display: flex; flex-direction: column"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput />
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+      New User? <a routerLink="/register">Register here</a>
+    </mat-card>
+  </div>
+  

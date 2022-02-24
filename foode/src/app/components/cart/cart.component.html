@@ -1,0 +1,92 @@
+<h1 align="center">Your Cart</h1>
+
+<mat-stepper *ngIf="cartCount > 0; else emptyCart" linear #stepper>
+  <mat-step [editable]="false">
+    <ng-template matStepLabel>Your cart details</ng-template>
+    <div *ngFor="let ob of cart" style="width: 70%; margin: auto">
+      <br />
+      <mat-card>
+        <mat-card-title>{{ob.food.name}}</mat-card-title>
+        <mat-card-subtitle
+          >₹{{ob.food.price}} X {{ob.quantity}} =
+          ₹{{ob.total_price}}</mat-card-subtitle
+        >
+        <mat-card-actions align="end">
+          <button
+            mat-mini-fab
+            (click)="ob.quantity=ob.quantity-1;ob.total_price=ob.quantity*ob.food.price;updateQuantity(ob)"
+            *ngIf="ob.quantity>1"
+            color="warn"
+            id="reduceQuant"
+          >
+            -
+          </button>
+          <span
+            style="padding: 0 10px; padding-top: 10px; font-weight: bolder"
+            >{{ob.quantity}}</span
+          >
+          <button
+            mat-mini-fab
+            (click)="ob.quantity=ob.quantity+1;ob.total_price=ob.quantity*ob.food.price;updateQuantity(ob)"
+            color="primary"
+            id="increaseQuant"
+          >
+            +
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div align="end">
+      <button mat-fab color="warn" matStepperNext>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [editable]="true">
+    <ng-template matStepLabel>Fill out your address</ng-template>
+    <div align="center">
+      <mat-form-field appearance="fill" style="width: 50vw; margin-top: 40px">
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="address" name="something"/>
+      </mat-form-field>
+    </div>
+    <div align="end">
+      <button mat-fab color="warn" matStepperNext>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Summary</ng-template>
+    <div *ngIf="address; else noAddress">
+      <div align="center">
+        <p>Total Cart Items: {{cart.length}}</p>
+        <p>Total number of Items in this Order: {{getQuantity()}}</p>
+        <p>Total Price: ₹{{getOrderTotal()}}</p>
+        <p>Deliver to: {{address}}</p>
+      </div>
+      <div align="end" style="display: flex; justify-content: space-around">
+        <button mat-raised-button (click)="stepper.reset()">Reset</button>
+        <button mat-raised-button color="warn" (click)="placeOrder()">
+          Place Order
+        </button>
+      </div>
+    </div>
+    <ng-template #noAddress>
+      <p align="center" style="font-weight: bold; color: red">
+        Address is required
+      </p>
+      <button mat-raised-button color="warn" matStepperPrevious>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Add Address
+      </button>
+    </ng-template>
+  </mat-step>
+</mat-stepper>
+
+<ng-template #emptyCart>
+  <div align="center">
+    <h3>No items added found in cart</h3>
+    <button mat-raised-button routerLink="/menu">Shop here</button>
+  </div>
+</ng-template>

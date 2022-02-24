@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Please {{dialogMessage}} the food details</h2>
+<div mat-dialog-content class="mat-typography">
+  <div [formGroup]="foodForm" (ngSubmit)="addFooditem()" style="display:grid">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput
+        type="text"
+        placeholder="Enter Fruit Name"
+        formControlName="name"
+        >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Price ₹</mat-label>
+      <input matInput
+        type="number"
+        placeholder="Enter Fruit Price"
+        formControlName="price"
+        >
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button *ngIf="dialogMessage=='update'; else addFood" mat-raised-button color="warn" type="submit" (click)="updtFooditem()">Update</button>
+  <ng-template #addFood>
+    <button mat-raised-button color="primary" type="submit" (click)="addFooditem()">Add</button>
+  </ng-template>
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>

@@ -1,0 +1,30 @@
+<div align="center" style="margin-top: 40px">
+    <mat-card style="width: 40%">
+      <h1 align="center">Register</h1>
+      <form
+        [formGroup]="regForm"
+        (ngSubmit)="register()"
+        style="margin-top: 60px; margin-bottom: 20px; display: flex; flex-direction: column"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput />
+        </mat-form-field>
+        <label>Type of User:</label>
+        <mat-radio-group
+          style="padding: 20px 0; display: flex; justify-content: space-around"
+          formControlName="type"
+        >
+          <mat-radio-button value="admin">Admin</mat-radio-button>
+          <mat-radio-button value="user">User</mat-radio-button>
+        </mat-radio-group>
+        <button mat-raised-button color="warn" type="submit">Submit</button>
+      </form>
+      Registered? <a routerLink="/login">Login here</a>
+    </mat-card>
+  </div>
+  

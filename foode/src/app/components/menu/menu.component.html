@@ -1,0 +1,32 @@
+<h1 align="center">Menu</h1>
+<div class="container" *ngIf="foodCount>0; else noFood">
+  <div class="food-card" *ngFor="let item of food">
+    <p style="margin-top: 20px">
+      <mat-card>
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        <mat-card-content>
+          <p>{{item.description}}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button id="delFav" mat-icon-button *ngIf="item.isFav" (click)="delFav(item)">
+            <mat-icon color="warn">favorite</mat-icon>
+          </button>
+          <button id="addFav" mat-icon-button *ngIf="!item.isFav" (click)="addFav(item)">
+            <mat-icon>favorite_border</mat-icon>
+          </button>
+          <button id="addCart" *ngIf="!item.inCart" mat-icon-button (click)="addCart(item)">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+          <button id="deleteCart" *ngIf="item.inCart" mat-icon-button (click)="deleteCart(item)">
+            <mat-icon color="primary">remove_shopping_cart</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </p>
+  </div>
+</div>
+
+<ng-template #noFood>
+  <p id="no_food" align=center>No Food available at this time! Please check back later.</p>
+</ng-template>

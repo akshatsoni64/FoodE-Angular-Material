@@ -1,0 +1,23 @@
+<h1 align="center">Your Orders</h1>
+<div style="padding-top:20px;">
+    <mat-accordion>
+    <mat-expansion-panel *ngFor="let order of orders; index as i" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Order #{{i+1}}
+        </mat-panel-title>
+        <mat-panel-description>
+          ₹{{order.total_price}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <h4 align="center">Your Order Summary:</h4>
+      <div style="display:flex; justify-content:space-around" *ngFor="let cart of order.cart">
+        <div>{{cart.food.name}}:</div>
+        <div>{{cart.quantity}} X ₹{{cart.food.price}}</div>
+        <div>= ₹{{cart.total_price}}</div>
+      </div>
+      <hr>
+      <div align="end">Total Price: ₹{{order.total_price}}</div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

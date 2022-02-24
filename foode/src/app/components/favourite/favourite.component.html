@@ -1,0 +1,11 @@
+<h1 align="center">Your Favourites</h1>
+<mat-list>
+    <div *ngFor="let ob of favs">
+      <mat-list-item>
+        <mat-icon color="warn">favorite</mat-icon>
+        {{ob.food.name}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+  

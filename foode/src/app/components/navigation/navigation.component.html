@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span id="appTitle" routerLink="/">FoodE</span>
+    <span class="example-spacer"></span>
+    <button
+      *ngIf="authed && usertype!=='admin'"
+      routerLink="/cart"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon [matBadge]="cartCount" matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+    
+    <button *ngIf="authed" mat-button [matMenuTriggerFor]="belowMenu">
+      Welcome, {{username|titlecase}}
+    </button>
+  
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button *ngIf="usertype!=='admin'" mat-menu-item routerLink="/favourites">
+        <mat-icon color="warn">favorite</mat-icon>Favourites
+      </button>
+      <button *ngIf="usertype!=='admin'" mat-menu-item routerLink="/orders">
+        <mat-icon color="primary">shopping_basket</mat-icon>Orders
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon color="warn">exit_to_app</mat-icon>Logout
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+  

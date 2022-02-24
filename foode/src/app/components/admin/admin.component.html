@@ -1,0 +1,38 @@
+<div style="text-align:center; padding: 20px 0">
+    <button mat-raised-button color="primary" (click)="openAddFoodDialog()">Add Food</button>
+  </div>
+  <table *ngIf="foodCount>0; else noFoodDiv" style="width:100%" mat-table [dataSource]="food" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editFooditem(element)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openDelFoodDialog(element)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="foodProps"></tr>
+    <tr mat-row *matRowDef="let row; columns: foodProps;"></tr>
+  </table>
+  <ng-template #noFoodDiv>
+    <h3>No food items available! Please add by clicking the button above..</h3>
+  </ng-template>
