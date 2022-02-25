@@ -33,7 +33,7 @@ export class AuthService {
   createUser(username: string, password: string, type: string):
       Observable<User> {
     const user = {'username': username, 'password': password, 'type': type};
-    console.log('InService: ', user);
+    // console.log('InService: ', user);
     return this.http.post<User>(`${this.$apiUrl}user/`, user);
   }
 

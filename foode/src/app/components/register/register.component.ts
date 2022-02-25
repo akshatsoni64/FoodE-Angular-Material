@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit {
           'Invalid Request, Please try again!', '', {duration: 2000});
     } else {
       const cred = this.regForm.value;
-      console.log(cred);
-      console.log(this.regForm);
+      // console.log(cred);
+      // console.log(this.regForm);
       this.authService.createUser(cred.username, cred.password, cred.type)
           .subscribe((data) => {
             this.authService.loginUser(data);

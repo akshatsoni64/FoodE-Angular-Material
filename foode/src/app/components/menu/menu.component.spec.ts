@@ -83,7 +83,7 @@ describe('Non-Empty Menu Component Tests', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
-    
+
     component.food = mockfood;
     component.foodCount = mockfood.length;
 
@@ -99,13 +99,13 @@ describe('Non-Empty Menu Component Tests', () => {
   });
 
   it('Favourite & In-Cart Item', () => {
-    console.log('Favourite & In-Cart Item', app);
+    // console.log('Favourite & In-Cart Item', app);
     expect(app.querySelector('button#delFav')).toBeTruthy();
     expect(app.querySelector('button#deleteCart')).toBeFalsy();
   });
-  
+
   it('Add-2-Favourite & Add-2-Cart Item', () => {
-    console.log('Add-2-Favourite & Add-2-Cart Item', app);
+    // console.log('Add-2-Favourite & Add-2-Cart Item', app);
     expect(app.querySelector('button#addCart')).toBeTruthy();
     expect(app.querySelector('button#addFav')).toBeFalsy();
   });
@@ -117,6 +117,6 @@ describe('Non-Empty Menu Component Tests', () => {
   //     "description": "Banana Fruit",
   //     "price": 50
   //   };
-    
+
   // });
 });

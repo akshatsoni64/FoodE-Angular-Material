@@ -38,7 +38,7 @@ export class CartService {
   }
 
   updateCartQuantity(item: Cart) {
-    return this.http.put(
+    return this.http.patch(
         `${this.authService.$apiUrl}cart/${item.id}/`,
         {'quantity': item.quantity, 'total_price': item.total_price});
   }

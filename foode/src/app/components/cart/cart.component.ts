@@ -47,14 +47,13 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder() {
-    console.log(this.getOrderTotal());
-    // return;
     this.orderService.createOrder(this.getOrderTotal(), this.cart, this.address)
         .subscribe((data) => {
           const sbref = this.snackbar.open(
               'Order Placed Successfully', 'See Orders', {duration: 2000});
 
           sbref.afterDismissed().subscribe((res) => {
+            this.cartService.emitCart();
             this.router.navigate(['orders']);
           });
         });

@@ -31,7 +31,7 @@ class MenuViewSet(ModelViewSet):
             return Response("User is required")
 
         favs = Favourites.objects.filter(user=user).values_list('food__pk', flat=True)
-        carts = Cart.objects.filter(user=user).values_list('food__pk', flat=True)
+        carts = Cart.objects.filter(user=user, active=True).values_list('food__pk', flat=True)
 
         queryset = FoodSerializer(Food.objects.all(), many=True).data
 
@@ -68,7 +68,7 @@ class OrderViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         Cart.objects.filter(pk__in=request.data['cart']).update(active=False)
-        # return super().create(request, *args, **kwargs)
+        return super().create(request, *args, **kwargs)
 
 
 class OrderDetailsViewSet(ModelViewSet):

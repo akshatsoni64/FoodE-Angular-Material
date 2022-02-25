@@ -13,7 +13,7 @@ export class DelFoodComponent {
       public dialogRef: MatDialogRef<DelFoodComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) {
     this.foodId = data['foodId'];
-    console.log(this.foodId, 'Initialized');
+    // console.log(this.foodId, 'Initialized');
   }
 
   deleteFooditem() {

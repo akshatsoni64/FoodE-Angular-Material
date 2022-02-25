@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
       AddFoodComponent, { data: { 'label': 'provide', 'food': null } });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`AddDialog result: ${result.event}`);
+      // console.log(`AddDialog result: ${result.event}`);
       if (result.event === 'add') {
         this.food.push(result.food);
         this.foodCount = this.food.length;
@@ -45,11 +45,11 @@ export class AdminComponent implements OnInit {
   }
 
   openDelFoodDialog(food: Food) {
-    console.log(`deleting ${food.id}`);
+    // console.log(`deleting ${food.id}`);
     const dialogRef =
       this.dialog.open(DelFoodComponent, { data: { 'foodId': food.id } });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`DeleteDialog result: ${result.event} : ${result.foodId}`);
+      // console.log(`DeleteDialog result: ${result.event} : ${result.foodId}`);
       if (result.event === 'delete') {
         this.adminService.deleteFood(result.foodId).subscribe((res) => {
           this.food = this.food.filter((food) => food.id !== result.foodId);
